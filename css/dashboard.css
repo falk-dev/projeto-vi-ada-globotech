@@ -1,0 +1,1081 @@
+/* Estilo para o botão/menu SAIR no dashboard */
+.navv {
+  display: flex;
+  gap: .75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.navv li {
+  margin: 0;
+}
+
+.navv a {
+  color: var(--purple-dark, #4f1ed8);
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: .95rem;
+  padding: .5rem 1.2rem;
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--teal, #18c6d1) 0%, var(--purple, #6e2cff) 100%);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(110,44,255,.08);
+  transition: background .2s, color .2s, box-shadow .2s;
+  text-decoration: none;
+  letter-spacing: .04em;
+}
+
+.navv a:hover {
+  background: var(--purple-dark, #4f1ed8);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(110,44,255,.15);
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .navv {
+    justify-content: flex-end;
+    font-size: .85rem;
+  }
+  .navv a {
+    padding: .4rem .7rem;
+    font-size: .85rem;
+  }
+}
+/* ===========================
+   Reset
+   =========================== */
+:root {
+  /* cores base */
+  --page: #eeeeef; /* fundo cinza */
+  --panel: #ffffff; /* card */
+  --text: #0f172a;
+  --muted: #6b6f76;
+  --border: #e7e7e7;
+
+  /* marca */
+  --purple: #6e2cff;
+  --purple-dark: #4f1ed8;
+  --teal: #18c6d1;
+
+  /* UI */
+  --radius: 22px;
+  --container: 1080px;
+
+  /* tipografia */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans";
+  --lh: 1.5;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font: 16px / var(--lh) var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+a {
+  color: var(--text);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* utilitário de acessibilidade: label invisível, ainda lido por leitores de tela */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===========================
+   Layout geral
+   =========================== */
+.container {
+  width: min(100% - 2rem, var(--container));
+  margin-inline: auto;
+}
+.site-main {
+  margin-top: 2.5rem;
+}
+
+/* Header branco com tagline teal em caps */
+header.site {
+  background: #fff;
+  border-bottom: 1px solid #eaeaea;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 0.5rem 0;
+}
+header.site .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: inherit;
+}
+.logo {
+  width: 260px;
+  height: auto;
+}
+.brand-text .title {
+  display: none;
+} /* o logo já traz o nome */
+.brand-text .tagline {
+  display: block;
+  margin-top: -6px;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #24c2d6;
+  font-weight: 800;
+}
+.nav {
+  display: flex;
+  gap: 0.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav a {
+  color: #0f172a;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.75rem;
+}
+.nav a {
+  position: relative;
+  color: #0f172a;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-bottom: 0 !important; /* garante que não apareça a borda antiga */
+}
+.nav a:visited {
+  color: #0f172a;
+}
+
+/* linha "animada" */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: -2px; /* ligeiro afastamento da baseline */
+  height: 3px;
+  border-radius: 2px;
+  background: var(--purple);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s ease, background-color 0.22s ease;
+}
+
+/* Hover: mostra linha roxa */
+.nav a:hover::after {
+  transform: scaleX(1);
+  background: var(--purple);
+}
+
+.nav a[aria-current="page"]::after {
+  transform: scaleX(1);
+  background: var(--teal);
+}
+
+/* HOVER TAMBÉM NO ATIVO → vira roxo */
+.nav a[aria-current="page"]:hover::after {
+  background: var(--purple);
+}
+
+/* Clique / foco: texto roxo */
+.nav a:active,
+.nav a:focus-visible {
+  color: var(--purple);
+  outline: none;
+}
+
+/* Footer discreto */
+footer.site {
+  background: transparent;
+  border-top: 0;
+  text-align: center;
+}
+footer.site .container {
+  padding: 1rem 0;
+}
+footer.site p {
+  margin: 0;
+  color: var(--muted);
+}
+footer.site a {
+  color: #6a6ee6;
+}
+
+/* ===========================
+   Card da home
+   =========================== */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 5rem 3rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+}
+.card--home {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr; /* form um pouco maior que a arte */
+  align-items: start;
+  gap: 2.5rem;
+}
+@media (max-width: 900px) {
+  .card--home {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Colunas */
+.card-col--form {
+  align-self: start;
+}
+.card-col--side {
+  align-self: center;
+}
+.card-col--side figure {
+  margin: 0;
+}
+.card-col--side img {
+  width: clamp(340px, 46vw, 520px);
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+/* Títulos */
+.card-col--form h1 {
+  font-size: clamp(2.1rem, 1.2rem + 2.4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
+}
+.card-col--form h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 1.25rem 0 0.5rem;
+}
+
+/* ===========================
+   página: nova tarefa — layout geral
+   objetivo: centralizar o conteúdo e limitar largura do cartão
+   =========================== */
+.task-page .container{
+  max-width: 960px;
+  margin-inline: auto;
+  padding: 24px 16px;
+}
+
+/* título + subtítulo da página, alinhados com o cartão */
+.task-header{
+  text-align: center;
+  margin: 8px auto 20px;
+}
+.task-header h1{
+  font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2rem);
+  line-height: 1.2;
+  margin: 0 0 6px;
+}
+.task-header .page-subtitle{
+  color: #6B7280; /* cinzinha discreta */
+  font-size: .95rem;
+  margin: 0;
+}
+
+/* ===========================
+   cartão do formulário (aparência igual ao mockup)
+   =========================== */
+.form-card{
+  background: var(--card, #fff);
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(16,24,40,.06);
+  padding: clamp(16px, 3vw, 28px);
+  max-width: 720px;
+  margin: 0 auto 36px; /* centralizado */
+}
+
+/* grade do formulário (mobile-first: 1 coluna, desktop: 2 colunas) */
+.task-form{
+  display: grid;
+  gap: 16px;
+}
+.task-form .grid-2{
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 720px){
+  .task-form .grid-2{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ===========================
+   campos: altura, tipografia e foco consistente
+   =========================== */
+.field{ display: block; }
+.field .helper{
+  display: block;
+  margin-top: 6px;
+  font-size: .85rem;
+  color: #6B7280;
+}
+
+.task-form input[type="text"],
+.task-form input[type="date"],
+.task-form select,
+.task-form textarea{
+  width: 100%;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  background: #fff;
+  font: inherit;
+  padding: 12px 14px;
+  color: #111827;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+/* altura dos campos “de linha” para bater com o mockup */
+.task-form input[type="text"],
+.task-form input[type="date"],
+.task-form select{
+  height: 44px;
+}
+
+/* foco roxinho elegante (segue o primário do painel) */
+.task-form input:focus,
+.task-form select:focus,
+.task-form textarea:focus{
+  border-color: #5B56F7;
+  box-shadow: 0 0 0 3px rgba(91,86,247,.15);
+}
+
+/* select com setinha discreta (sem depender de lib) */
+.task-form select{
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #6B7280 50%),
+    linear-gradient(135deg, #6B7280 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 54%,
+    calc(100% - 12px) 54%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+/* textarea com altura confortável */
+.task-form textarea{
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ===========================
+   botões: primário (roxo) e secundário (neutro)
+   =========================== */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5ch;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease, border-color .12s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn.primary{
+  background: #5B56F7;
+  color: #fff;
+  border-color: #5B56F7;
+}
+.btn.primary:hover{ transform: translateY(-1px); box-shadow: 0 6px 16px rgba(91,86,247,.24); }
+.btn.primary:active{ transform: translateY(0); box-shadow: none; }
+
+.btn.secondary{
+  background: #fff;
+  color: #111827;
+  border-color: #D1D5DB;
+}
+.btn.secondary:hover{ background: #F9FAFB; }
+
+/* posição dos botões dentro do formulário */
+.actions{
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+/* empilhar certinho no celular (Salvar embaixo do Cancelar) */
+@media (max-width: 520px){
+  .actions{ flex-direction: column-reverse; }
+  .actions .btn{ width: 100%; }
+}
+
+/* ===========================
+   utilidades que a página usa
+   =========================== */
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ====== DASHBOARD — LISTAS GABI ================================================================== */
+/* painel principal do dashboard */
+.panel--dashboard{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis-weight: none;
+  font-synthesis-style: none;
+
+  background:#fff;
+  border:1px solid #E4E7EC;
+  border-radius:16px;
+  box-shadow:0 6px 20px rgba(0,0,0,.06);
+  padding:24px;
+
+  --prio-baixa-bg:#38b6ff; --prio-baixa-stk:#5170ff;
+  --prio-media-bg:#ffbd59; --prio-media-stk:#ff914d;
+  --prio-alta-bg:#ff5757;  --prio-alta-stk:#ff3131;
+  --purple:#6f39ff;
+}
+
+/* cabeçalho do painel (título, subtítulo e botão) */
+.dashboard-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:18px;
+}
+.dashboard-toolbar h1{
+  margin:0 0 .25rem;
+  line-height:1.1;
+  font-weight:800;
+  letter-spacing:-.02em;
+  color:#111;
+}
+.dashboard-toolbar .subtitle{
+  margin:0;
+  color:#6B7280;
+  font-size:.95rem;
+}
+.dashboard-toolbar .btn.primary{
+  width:148px; height:44px;
+  display:inline-flex; align-items:center; justify-content:center;
+  text-transform:uppercase;
+  font-weight:800; letter-spacing:.02em; font-size:.95rem;
+  border-radius:10px; padding:0 18px;
+  background:var(--purple); color:#fff; border:0;
+  box-shadow:0 1px 0 rgba(0,0,0,.08);
+  text-decoration:none;
+  transition:transform .18s ease, filter .18s ease;
+}
+.dashboard-toolbar .btn.primary:hover{ transform:scale(1.04); }
+
+/* grade de cards (responsiva) */
+.panel--dashboard .dashboard-lists{
+  display:grid;
+  gap:16px;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  align-items:stretch;
+}
+
+/* card da lista (estrutura e altura) */
+.panel--dashboard .card.dashboard-list-card{
+  position:relative;
+  background:#fff;
+  border:1px solid #e1e4ea;
+  border-radius:12px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  gap:10px;
+  padding:16px;
+  min-height:220px;
+  min-width:0;
+
+  --prio-width:82px; --prio-height:26px; --prio-radius:6px; --prio-font:.80rem;
+  --prio-gap:calc(var(--prio-width) + 12px);
+
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.panel--dashboard .card.dashboard-list-card:hover{
+  transform:translateY(-2px) scale(1.015);
+  box-shadow:0 8px 22px rgba(0,0,0,.10);
+}
+
+/* título do card (truncado em 2 linhas e com respiro para o badge) */
+.dashboard-list-card__title{
+  margin:0;
+  font-weight:800;
+  letter-spacing:-.01em;
+  line-height:1.25;
+  color:#111;
+  padding-right:var(--prio-gap);
+  text-wrap:balance;
+  min-width:0;
+
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.dashboard-list-card__title a{ color:inherit; text-decoration:none; }
+
+/* descrição do card (2 linhas para nivelar alturas) */
+.dashboard-list-card__desc{
+  margin:0;
+  color:#6B7280;
+  line-height:1.55;
+
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  min-height:3.1em;
+}
+
+/* badge de prioridade (retangular, texto branco) */
+.badge--prio{
+  position:absolute; top:12px; right:12px;
+  width:82px; height:26px; border-radius:6px;
+  display:flex; align-items:center; justify-content:center;
+  padding:0 8px; font-size:.80rem; font-weight:800; line-height:1;
+  border:2px solid currentColor; color:#fff;
+}
+.badge--baixa{ background:var(--prio-baixa-bg); border-color:var(--prio-baixa-stk); }
+.badge--media{ background:var(--prio-media-bg); border-color:var(--prio-media-stk); }
+.badge--alta { background:var(--prio-alta-bg);  border-color:var(--prio-alta-stk);  }
+
+/* linha dos contadores (tarefas | pendentes | concluídas) */
+.badges-inline{
+  display:flex; align-items:center;
+  gap:10px;
+  white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis;
+  padding-right:var(--prio-gap);
+}
+.badges-inline .dot{ color:#9AA0A6; font-size:.82rem; }
+.badges-inline .meta-link{
+  background:none; border:0; padding:0;
+  font-size:.82rem; color:#6B7280;
+  font-weight:400; text-decoration:none;
+  cursor:pointer;
+}
+.badges-inline .meta-link:hover{ text-decoration:underline; }
+.badges-inline .meta-link:first-child{ font-weight:700; }
+.badges-inline .meta-link:first-child strong{ font-weight:700; }
+.badges-inline .meta-link:not(:first-child) strong{ font-weight:400; }
+
+/* botão “ver lista” (fixo no rodapé do card) */
+.panel--dashboard .card .btn.secondary{
+  margin-top:auto;
+  align-self:flex-end;
+
+  width:120px; height:40px;
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:0 12px; font-size:.85rem;
+  text-transform:uppercase; letter-spacing:.02em; font-weight:400;
+
+  background:#fff; color:#111;
+  border:1.5px solid #111; border-radius:8px;
+  text-decoration:none; box-shadow:none;
+
+  transition:transform .16s ease, box-shadow .16s ease;
+}
+.panel--dashboard .card .btn.secondary:hover{
+  transform:scale(1.06);
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+/* ordem visual por prioridade */
+.card.dashboard-list-card[data-prioridade="alta"] {  order:1; }
+.card.dashboard-list-card[data-prioridade="media"]{ order:2; }
+.card.dashboard-list-card[data-prioridade="baixa"]{ order:3; }
+
+/* rodapé com link roxo em itálico */
+footer.site .brand-link{
+  color:var(--purple);
+  font-style:italic;
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
+
+/* acessibilidade: reduz movimento quando preferido */
+@media (prefers-reduced-motion:reduce){
+  .panel--dashboard .card.dashboard-list-card,
+  .dashboard-toolbar .btn.primary,
+  .panel--dashboard .card .btn.secondary{ transition:none; }
+  .panel--dashboard .card.dashboard-list-card:hover{
+    transform:none; box-shadow:0 2px 8px rgba(0,0,0,.05);
+  }
+}
+
+/* blindagem contra sobrescritas do styles.css */
+body .panel--dashboard .dashboard-lists{ display:grid !important; }
+body .panel--dashboard .dashboard-lists .card.dashboard-list-card{
+  display:flex !important; flex-direction:column !important; height:100% !important;
+}
+body .panel--dashboard .dashboard-lists .card.dashboard-list-card .dashboard-list-card__title{
+  padding-right:var(--prio-gap) !important;
+}
+body .panel--dashboard .dashboard-lists .card.dashboard-list-card .dashboard-list-card__desc{
+  line-height:1.55 !important; min-height:3.1em !important;
+  display:-webkit-box !important; -webkit-line-clamp:2 !important; -webkit-box-orient:vertical !important;
+  overflow:hidden !important;
+}
+body .panel--dashboard .dashboard-lists .card.dashboard-list-card > .btn.secondary{
+  margin-top:auto !important; align-self:flex-end !important; text-decoration:none !important;
+}
+
+/* =====================================================================
+   RESPONSIVIDADE — desktop → tablet → mobile
+   ===================================================================== */
+
+/* tablet grande (<= 1100px) */
+@media (max-width:1100px){
+  .panel--dashboard{ padding:20px; }
+  .panel--dashboard .dashboard-lists{ grid-template-columns:repeat(2,1fr); gap:14px; }
+  .panel--dashboard .card.dashboard-list-card{ min-height:210px; }
+}
+
+/* tablet médio (<= 820px) */
+@media (max-width:820px){
+  .dashboard-toolbar{ flex-wrap:wrap; row-gap:8px; }
+  .dashboard-toolbar .btn.primary{ order:2; }
+  .panel--dashboard .card.dashboard-list-card{
+    --prio-width:78px; --prio-height:24px; --prio-font:.78rem;
+  }
+  .badges-inline{ gap:8px; }
+  .badges-inline .meta-link{ font-size:.8rem; }
+  .panel--dashboard .card .btn.secondary{ width:114px; height:38px; font-size:.82rem; }
+}
+
+/* mobile grande (<= 640px) */
+@media (max-width:640px){
+  .panel--dashboard .dashboard-lists{ grid-template-columns:1fr; gap:14px; }
+  .dashboard-toolbar{ flex-direction:column; align-items:flex-start; gap:6px; }
+  .dashboard-toolbar .btn.primary{ align-self:flex-end; }
+  .panel--dashboard .card.dashboard-list-card{
+    padding:14px;
+    --prio-width:74px; --prio-height:24px; --prio-font:.76rem;
+  }
+  .dashboard-list-card__desc{ -webkit-line-clamp:3; min-height:4.6em; }
+}
+
+/* mobile pequeno (<= 420px) */
+@media (max-width:420px){
+  .panel--dashboard{ padding:16px; }
+  .dashboard-toolbar h1{ font-size:1.4rem; }
+  .dashboard-toolbar .subtitle{ font-size:.9rem; }
+  .badges-inline .meta-link{ font-size:.78rem; }
+  .dashboard-toolbar .btn.primary{ width:136px; height:40px; font-size:.9rem; }
+  .panel--dashboard .card .btn.secondary{ width:108px; height:36px; font-size:.8rem; }
+}
+
+/* telas touch: suaviza efeitos de hover */
+@media (hover:none){
+  .panel--dashboard .card.dashboard-list-card:hover{ transform:none; }
+  .panel--dashboard .card .btn.secondary:hover{ transform:none; }
+}
+/* ==========================================================================
+   LEGENDA DE PRIORIDADES*/
+
+.legend{
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  margin-top: 16px;
+  padding: 0;
+}
+.panel + .legend{ margin-top: 16px; }
+
+.legend__list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 22px;          
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: .88rem;       
+  color: #6B7280;
+}
+
+.legend__item{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.legend__badge{
+  display: inline-flex;     
+  align-items: center;
+  justify-content: center;
+  min-width: 68px;          
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: .82rem;        
+  line-height: 1;           
+  color: #fff;
+  border: 2px solid transparent;
+  box-shadow: 0 1px 0 rgba(0,0,0,.08);
+}
+
+/* cores oficiais */
+.legend__badge--baixa{ background:#38b6ff; border-color:#5170ff; }
+.legend__badge--media{ background:#ffbd59; border-color:#ff914d; }
+.legend__badge--alta { background:#ff5757; border-color:#ff3131; }
+
+.legend__text strong{
+  color: #374151;
+  font-weight: 700;
+}
+
+/* mobile */
+@media (max-width: 640px){
+  .legend__list{ gap:8px 14px; font-size:.84rem; }
+  .legend__badge{ min-width:62px; height:24px; padding:0 8px; font-size:.78rem; }
+}
+/* limita e centraliza o “quadrado” dos cards */
+.site-main .container,
+.panel--dashboard{
+  width: min(100%, 1100px);
+  margin-inline: auto;
+}
+
+/* título + descrição + “CRIAR LISTA” sempre centralizados */
+.dashboard-toolbar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+.dashboard-toolbar .btn.primary{          /* seu botão roxinho */
+  align-self: center;
+}
+
+/* grade dos cards centralizada e com cartões com largura “bonita” */
+.dashboard-lists{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  justify-items: center;                  /* card no meio da coluna */
+}
+.dashboard-lists .card{
+  width: 100%;
+  max-width: 360px;                       /* não estica demais */
+}
+
+/* “VER LISTA” no centro do card, sempre */
+.card .btn.secondary{
+  display: block;
+  margin: 14px auto 0;
+}
+
+/* legenda centralizada abaixo dos cards */
+.legend{ margin-top: 18px; }
+.legend .legend_list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px 28px;
+  flex-wrap: wrap;
+}
+
+/* rodapé centralizado (só ele) */
+footer.site .container{ text-align: center; }
+
+/* ajustes extra pra telas bem estreitas (ex.: 320px) */
+@media (max-width: 420px){
+  .site-main .container,
+  .panel--dashboard{ padding-inline: 16px; }
+  .dashboard-lists{ grid-template-columns: 1fr; gap: 16px; }
+  .dashboard-lists .card{ max-width: 420px; }
+  .legend .legend_list{ gap: 10px 16px; }
+}
+/* mobile: legenda alinhada à esquerda */
+@media (max-width: 480px) {
+  /* container da legenda */
+  .legend, .Legend {
+    margin-top: 12px;
+  }
+
+  /* a lista da legenda fica colada à esquerda */
+  .legend__list, .Legend__List {
+    justify-content: flex-start;   /* sai do centro */
+    align-items: flex-start;
+    text-align: left;
+    gap: 8px 12px;                  /* um respiro menor no mobile */
+  }
+
+  /* cada item ocupa a linha toda e alinha conteúdo à esquerda */
+  .legend__item, .Legend__item {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  /* chip com um espacinho do texto */
+  .legend__badge, .Legend__badge {
+    margin-right: 10px;
+  }
+
+  /* texto realmente à esquerda e podendo quebrar linha */
+  .legend__text, .Legend__Text, .Legend__text {
+    text-align: left;
+    white-space: normal;            /* permite quebra de linha */
+  }
+}
+/*========================================================================================================================*/
+
+
+/* ===========================
+   Lista.html
+   =========================== */
+
+.card--list {
+  display: grid;
+  grid-template-columns: 1fr 0.4fr;
+  grid-template-areas:
+    "content button"
+    "tasks tasks";
+  grid-template-rows: auto;
+  align-items: start;
+  gap: 3rem;
+}
+
+#conteudo {
+  position: relative;
+}
+
+.card__content {
+  grid-area: content;
+  max-width: 100%;
+}
+
+.card__actions {
+  max-width: 100%;
+}
+
+.card__button {
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.3rem;
+  background: var(--purple);
+  color: #fff;
+  text-transform: uppercase;
+  padding: 0.85rem;
+  border-radius: 0.8rem;
+  letter-spacing: 0.02em;
+  border: 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: box-shadow 0.2s ease;
+  grid-area: button;
+}
+
+.card__tasks {
+  grid-area: tasks;
+  padding-inline-start: 0;
+  max-width: 100%;
+}
+
+.card__task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  border: 1px solid #6b6f76;
+  padding: 0.5rem 0.8em 0.5em 0.5em;
+  border-radius: 0.7em;
+  margin-bottom: 0.5em;
+  max-width: 100%;
+}
+
+.card__task-info {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card__task-info input[type="checkbox"] {
+  margin-right: 0.7rem;
+}
+
+.card__name::after {
+  content: " |";
+}
+
+.card__owner::before {
+  content: "• ";
+}
+
+.card__owner,
+.card__deadline {
+  color: #7b7b85;
+}
+
+.card__name,
+.card__owner,
+.card__deadline {
+  margin-right: 0.3em;
+}
+
+.card__task-action {
+  gap: 1em;
+  display: flex;
+}
+
+.card__button:hover {
+  text-decoration: none;
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+input[type="checkbox"] {
+  border: 0px;
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 100%;
+}
+
+.card__label {
+  background-color: #e0e0e0;
+  padding: 0.1rem 1.5rem;
+  border-radius: 5px;
+  color: #fff;
+  width: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__label--low {
+  background: #4da3ff;
+}
+
+.card__label--medium {
+  background: #ffb347;
+}
+
+.card__label--high {
+  background: #ff4d4f;
+}
+
+.card__description,
+.card__title {
+  margin-bottom: 0;
+}
+
+.card__title {
+  font-weight: 700;
+}
+
+.card__meta {
+  color: #7b7b85;
+}
+
+@media (max-width: 767px) {
+  .card {
+    padding: 2rem;
+  }
+  
+  .card__header {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .card--list {
+    grid-template-areas:
+      "content"
+      "button"
+      "tasks";
+  }
+
+  .card__name::after {
+    content: "";
+  }
+
+  .card__owner::before {
+    content: "";
+  }
+
+  .card__task-info {
+    width: 50%;
+  }
+}
+
+@media (max-width: 992px) {
+  .card--list {
+    grid-template-columns: 1fr;
+  }
+}

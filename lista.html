@@ -1,0 +1,130 @@
+ <!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pythonautas Launchpad</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/lista.css" />
+</head>
+
+<body>
+  <header class="site" role="banner">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="Criar Lista - Pythonautas Launchpad">
+        <img class="logo" src="assets/logo.svg" alt="Pythonautas Launchpad" />
+        <div class="brand-text">
+          <strong class="title">Pythonautas Launchpad</strong>
+          <span class="tagline">PAINEL DE TAREFAS &amp; CONTROLE DE MISSÕES</span>
+        </div>
+      </a>
+      <nav aria-label="primária">
+        <ul class="nav">
+          <li><a href="novo-usuario.html">Minhas Listas</a></li>
+          <li><a href="index.html" aria-current="page">Sair</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo" class="card site-main card--list container" aria-label="Lista de tarefas">
+    <!-- Cabeçalho -->
+    <div class="card__content">
+      <div class="card__header">
+        <h2 class="card__title">Projeto I - Introdução a Python</h2>
+        <span class="card__label card__label--low">Baixa</span>
+      </div>
+      <p class="card__description">
+        Pipeline em Python com estruturas condicionais simples e CSV em memória.
+      </p>
+      <small class="card__meta">
+        <strong>5 tarefas</strong> &bull; 2 pendentes &bull; 3 concluídas
+      </small>
+    </div>
+
+    <div class="card__actions">
+      <a href="nova-lista.html" class="card__button">Adicionar tarefa</a>
+    </div>
+
+    <!-- Tarefas -->
+    <ul class="card__tasks">
+      <li class="card__task">
+        <div class="card__task-info">
+          <input type="checkbox" name="task-1" id="task-1" checked>
+          <label for="task-1" class="card__name">Criar repositório</label>
+          <span class="card__deadline">Prazo: 28/08/2025</span>
+          <span class="card__owner">Responsável: Alice</span>
+        </div>
+        <div class="card__task-action">
+          <span class="card__label card__label--high">Alta</span>
+          <img width="30" height="30" src="https://img.icons8.com/windows/100/trash.png" alt="trash" />
+        </div>
+      </li>
+
+      <li class="card__task">
+        <div class="card__task-info">
+          <input type="checkbox" name="task-2" id="task-2">
+          <label for="task-2" class="card__name">Adicionar README</label>
+          <span class="card__deadline">Prazo: 31/08/2025</span>
+          <span class="card__owner">Responsável: Mychelle</span>
+        </div>
+        <div class="card__task-action">
+          <span class="card__label card__label--medium">Média</span>
+          <img width="30" height="30" src="https://img.icons8.com/windows/100/trash.png" alt="trash" />
+        </div>
+      </li>
+
+      <li class="card__task">
+        <div class="card__task-info">
+          <input type="checkbox" name="task-3" id="task-3" checked>
+          <label for="task-3" class="card__name">Adicionar Pastas</label>
+          <span class="card__deadline">Prazo: 28/08/2025</span>
+          <span class="card__owner">Responsável: Will</span>
+        </div>
+        <div class="card__task-action">
+          <span class="card__label card__label--low">Baixa</span>
+          <img width="30" height="30" src="https://img.icons8.com/windows/100/trash.png" alt="trash" />
+        </div>
+      </li>
+
+      <li class="card__task">
+        <div class="card__task-info">
+          <input type="checkbox" name="task-4" id="task-4" checked>
+          <label for="task-4" class="card__name">Criar main.py</label>
+          <span class="card__deadline">Prazo: 02/09/2025</span>
+          <span class="card__owner">Responsável: Isa</span>
+        </div>
+        <div class="card__task-action">
+          <span class="card__label card__label--high">Alta</span>
+          <img width="30" height="30" src="https://img.icons8.com/windows/100/trash.png" alt="trash" />
+        </div>
+      </li>
+
+      <li class="card__task">
+        <div class="card__task-info">
+          <input type="checkbox" name="task-5" id="task-5">
+          <label for="task-5" class="card__name">Tratar arquivo .csv</label>
+          <span class="card__deadline">Prazo: 02/09/2025</span>
+          <span class="card__owner">Responsável: Não definido</span>
+        </div>
+        <div class="card__task-action">
+          <span class="card__label card__label--high">Alta</span>
+          <img width="30" height="30" src="https://img.icons8.com/windows/100/trash.png" alt="trash" />
+        </div>
+      </li>
+    </ul>
+  </main>
+
+  <footer class="site" role="contentinfo">
+    <div class="container">
+      <p>© 2025 <a href="https://github.com/falk-dev/projeto-v-ada-globotech" target="_blank" rel="noopener">Pythonautas
+          — Academia Globotech</a></p>
+    </div>
+  </footer>
+</body>
+
+</html>
