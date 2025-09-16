@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pythonautas Launchpad</title>
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/novo-usuario.css" />
+  
+    <meta name="description" content="Painel de tarefas e controle de missões para desenvolvedores Python." />
+  </head>
+  <body>
+    <header class="site" role="banner">
+      <div class="container">
+        <a class="brand" href="index.html" aria-label="Início - Pythonautas Launchpad">
+          <img class="logo" src="assets/logo.svg" alt="Pythonautas Launchpad" />
+          <div class="brand-text">
+            <strong class="title">Pythonautas Launchpad</strong>
+            <span class="tagline">PAINEL DE TAREFAS &amp; CONTROLE DE MISSÕES</span>
+          </div>
+        </a>
+        <nav aria-label="primária">
+          <ul class="nav">
+            <li><a href="index.html" aria-current="page" class="btn">Início</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo" class="site-main">
+      <div class="container">
+        <section class="card" aria-label="Criar conta">
+          <div class="card-col card-col--form">
+            <h1>Criar conta</h1>
+
+      <!-- Formulário com action apontando para dashboard.html -->
+            <form id="form-criar-conta" 
+                  action="dashboard.html" 
+                  novalidate>
+
+              <div class="field">
+                <label for="nome">Nome completo <span class="sr-only">(obrigatório)</span></label>
+                <div class="input-icon-wrapper">
+                  <span class="input-icon">
+                    <!-- ícone de usuário -->
+                    <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="#6e2cff" stroke-width="2"/><path d="M4 20c0-3.333 2.667-6 8-6s8 2.667 8 6" stroke="#6e2cff" stroke-width="2"/></svg>
+                  </span>
+                  <input type="text" id="nome" name="nome" placeholder="Nome " required minlength="5" autocomplete="name" />
+                </div>
+                <div class="error-message" id="nome-error"></div>
+              </div>
+
+              <div class="field">
+                <label for="usuario">Usuário <span class="sr-only">(obrigatório)</span></label>
+                <div class="input-icon-wrapper">
+                  <span class="input-icon">
+                    <!-- ícone de @ -->
+                    <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#18c6d1" stroke-width="2"/><text x="7" y="16" font-size="12" fill="#18c6d1">@</text></svg>
+                  </span>
+                  <input type="text" id="usuario" name="usuario" placeholder="usuario" required pattern="[A-Za-z0-9_]{4,20}" autocomplete="username" />
+                </div>
+                <div class="error-message" id="usuario-error"></div>
+              </div>
+
+              <div class="field">
+                <label for="email">E-mail <span class="sr-only">(obrigatório)</span></label>
+                <div class="input-icon-wrapper">
+                  <span class="input-icon">
+                    <!-- ícone de e-mail -->
+                    <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="3" stroke="#6e2cff" stroke-width="2"/><path d="M3 6l9 7 9-7" stroke="#18c6d1" stroke-width="2"/></svg>
+                  </span>
+                  <input type="email" id="email" name="email" placeholder="email@exemplo.com" required autocomplete="email" />
+                </div>
+                <div class="error-message" id="email-error"></div>
+              </div>
+
+              <div class="field">
+                <label for="senha">Senha <span class="sr-only">(obrigatório)</span></label>
+                <div class="input-icon-wrapper">
+                  <span class="input-icon">
+                    <!-- ícone de cadeado -->
+                    <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><rect x="6" y="10" width="12" height="8" rx="3" stroke="#6e2cff" stroke-width="2"/><path d="M9 10V7a3 3 0 1 1 6 0v3" stroke="#18c6d1" stroke-width="2"/></svg>
+                  </span>
+                  <input type="password" id="senha" name="senha" placeholder="******" required minlength="6" autocomplete="new-password" />
+                </div>
+                <div class="error-message" id="senha-error"></div>
+              </div>
+
+              <div class="field">
+                <label for="confirmar">Confirmar senha <span class="sr-only">(obrigatório)</span></label>
+                <div class="input-icon-wrapper">
+                  <span class="input-icon">
+                    <!-- ícone de confirmação -->
+                    <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#18c6d1" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#6e2cff" stroke-width="2"/></svg>
+                  </span>
+                  <input type="password" id="confirmar" name="confirmar" placeholder="******" required autocomplete="new-password" />
+                </div>
+                <div class="error-message" id="confirmar-error"></div>
+              </div>
+
+              <div class="helper">
+                <label><input type="checkbox" id="termos" name="termos" required /> Aceito os <a href="termos.html" target="_blank" rel="noopener">termos de uso</a></label>
+              </div>
+
+              <div class="actions">
+                <button type="submit" class="btn primary">Criar conta</button>
+              </div>
+            </form>
+            <div class="actions">
+              <form action="index.html" method="get">
+                <button type="submit" class="btn secondary">Cancelar</button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site" role="contentinfo">
+      <div class="container">
+        <p>© 2025 <a href="https://github.com/falk-dev/projeto-v-ada-globotech" target="_blank" rel="noopener">Pythonautas — Academia Globotech</a></p>
+      </div>
+    </footer>
+
+    <script src="js/novo-usuario.js"></script>
+
+  </body>
+</html>

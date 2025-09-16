@@ -1,0 +1,47 @@
+/* Estilo para o botão/menu SAIR na nova-lista */
+
+.navv {
+  display: flex;
+  gap: .75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.navv li {
+  margin: 0;
+}
+
+.navv a {
+  color: var(--purple-dark, #4f1ed8);
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: .95rem;
+  padding: .5rem 1.2rem;
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--teal, #18c6d1) 0%, var(--purple, #6e2cff) 100%);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(110,44,255,.08);
+  transition: background .2s, color .2s, box-shadow .2s;
+  text-decoration: none;
+  letter-spacing: .04em;
+}
+
+.navv a:hover {
+  background: var(--purple-dark, #4f1ed8);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(110,44,255,.15);
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .navv {
+    justify-content: flex-end;
+    font-size: .85rem;
+  }
+  .navv a {
+    padding: .4rem .7rem;
+    font-size: .85rem;
+  }
+}
