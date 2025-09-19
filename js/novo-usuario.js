@@ -1,6 +1,7 @@
 
 // TODO Trocar o token no site do CRUDCRUD
-const apiUrl = "https://crudcrud.com/api/66160e6ad6214c97913534093fb32516/usuarios";
+const apiUrl = "https://68cca001716562cf5077f466.mockapi.io/api/usuarios";
+
 
 document.addEventListener("DOMContentLoaded", function () {
    const form = document.querySelector("form");
@@ -88,39 +89,28 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.appendChild(loadingPopup);
 
       try {
-         await fetch(apiUrl, {
-            method: "POST",
-            headers: {
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ nome, usuario, email, senha })
-         })
-         .then(response => {
-            if (!response.ok) throw new Error("Erro ao cadastrar usuário");
-            // Sincronização: buscar o usuário cadastrado
-            return fetch(apiUrl)
-               .then(res => res.json())
-               .then(usuarios => {
-                  // Aqui você pode sincronizar dados, exibir ou salvar no localStorage
-                  // Exemplo: salvar o último usuário cadastrado
-                  const novoUsuario = usuarios.find(u => u.email === email);
-                  if (novoUsuario) {
-                     localStorage.setItem("usuario", JSON.stringify(novoUsuario));
-                  }
-               });
-         })
-         .then(() => {
-            document.body.removeChild(loadingPopup);
-            alert("Usuário cadastrado com sucesso!");
-            form.reset();
-            setTimeout(() => {
-               window.location.href = "dashboard.html";
-            }, 500);
-         })
-         .catch(err => {
-            document.body.removeChild(loadingPopup);
-            alert("Falha ao cadastrar usuário: " + err.message);
+         const response = await fetch(apiUrl, {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify({ nome, usuario, email, senha }),
          });
+
+         document.body.removeChild(loadingPopup);
+
+         if (!response.ok) throw new Error("Erro ao cadastrar usuário");
+
+         alert("Usuário cadastrado com sucesso!");
+         form.reset();
+
+         // Redireciona após pequeno atraso
+         setTimeout(() => {
+         window.location.href = "dashboard.html";
+         }, 500);
+      } catch (err) {
+         document.body.removeChild(loadingPopup);
+         alert("Falha ao cadastrar usuário: " + err.message);
       }
    });
 });
