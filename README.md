@@ -3,6 +3,8 @@
 Este repositório contém a implementação do **Projeto VI** da trilha de Front-End da Ada Tech.  
 O objetivo é criar um **sistema de controle de tarefas dinâmico**, com múltiplos usuários, listas e tarefas, aplicando conceitos de **manipulação do DOM** e **integração com APIs** usando **JavaScript**.
 
+![Capa do projeto V com os logos da Ada e da Globo ao topo, fundo gradiente roxo-azul e o botão “Grupo Pythonautas”](imagens/apresentacao_projetovi/capavi.png)
+
 ---
 
 ## 🎯 Objetivo do Projeto
