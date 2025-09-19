@@ -1,14 +1,16 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Adicionar Tarefa — Pythonautas Launchpad</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/css/nova-tarefa.css" />
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
+
 <body>
 
   <!-- header global que você já usa -->
@@ -47,9 +49,8 @@
           <!-- título -->
           <div class="field">
             <label class="sr-only" for="titulo">Título</label>
-            <input id="titulo" name="titulo" type="text"
-                   placeholder="Ex.: Implementar endpoint de ranking"
-                   maxlength="120" required />
+            <input id="titulo" name="titulo" type="text" placeholder="Ex.: Implementar endpoint de ranking"
+              maxlength="120" required />
             <small class="helper">Até 120 caracteres.</small>
           </div>
 
@@ -57,7 +58,7 @@
           <div class="grid-2">
             <div class="field">
               <label class="sr-only" for="prioridade">Prioridade</label>
-              <select id="prioridade" name="prioridade" aria-label="Prioridade">
+              <select id="prioridade" name="prioridade" aria-label="Prioridade" required>
                 <option value="alta">Alta</option>
                 <option value="media" selected>Média</option>
                 <option value="baixa">Baixa</option>
@@ -97,7 +98,7 @@
           <div class="field">
             <label class="sr-only" for="descricao">Descrição</label>
             <textarea id="descricao" name="descricao" rows="4"
-                      placeholder="Detalhes, critérios de aceitação, links, observações..."></textarea>
+              placeholder="Detalhes, critérios de aceitação, links, observações..."></textarea>
           </div>
 
           <!-- ações -->
@@ -113,8 +114,11 @@
   <!-- footer global que você já usa -->
   <footer class="site" role="contentinfo">
     <div class="container">
-      <p>© 2025 <a href="https://github.com/falk-dev/projeto-v-globotech" target="_blank" rel="noopener">Pythonautas — Academia Globotech</a></p>
+      <p>© 2025 <a href="https://github.com/falk-dev/projeto-v-globotech" target="_blank" rel="noopener">Pythonautas —
+          Academia Globotech</a></p>
     </div>
   </footer>
+  <script src="js/nova-tarefa.js"></script>
 </body>
+
 </html>
