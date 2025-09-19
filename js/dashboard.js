@@ -3,18 +3,20 @@
 const BASE = "https://68cca001716562cf5077f466.mockapi.io/api";
 const URLS = {
   users: `${BASE}/usuarios`,
-  lists: `${BASE}/lists`,
-  tasks: `${BASE}/tasks`,
+  lists: `${BASE}/listas`,
+  tasks: `${BASE}/tarefas`,
 };
 
 document.addEventListener("DOMContentLoaded", initDashboard);
 
 async function initDashboard() {
   const user = getCurrentUser();
-  if (!user?.id) {
-    window.location.href = "index.html";
-    return;
-  }
+
+  console.log({ user });
+  // if (!user?.id) {
+  //   window.location.href = "index.html";
+  //   return;
+  // }
 
   const grid = document.querySelector(".dashboard-lists");
   if (!grid) return;
@@ -22,7 +24,11 @@ async function initDashboard() {
   grid.innerHTML = `<p style="grid-column:1/-1; text-align:center;">Carregando suas listas...</p>`;
 
   try {
-    const lists = await apiGet(`${URLS.lists}?userId=${encodeURIComponent(user.id)}&sortBy=createdAt&order=desc`);
+    console.log("tonhao");
+
+    console.log(user);
+    console.log(user.id);
+    const lists = await apiGet(`${URLS.lists}?usuarioId=${encodeURIComponent(user.id)}&sortBy=createdAt&order=desc`);
 
     if (!lists.length) {
       grid.innerHTML = `
@@ -48,7 +54,7 @@ async function initDashboard() {
 }
 
 async function getCountsForList(listId) {
-  const tasks = await apiGet(`${URLS.tasks}?listId=${encodeURIComponent(listId)}&sortBy=createdAt&order=desc`);
+  const tasks = await apiGet(`${URLS.tasks}?listaId=${encodeURIComponent(listId)}&sortBy=createdAt&order=desc`);
   const total = tasks.length;
   const concluidas = tasks.filter((t) => !!t.done).length;
   const pendentes = total - concluidas;
@@ -62,9 +68,13 @@ async function apiGet(url) {
 }
 
 function getCurrentUser() {
+  localStorage.setItem('usuario', JSON.stringify({ "nome": "Alice Ochoa", "usuario": "aliceochoa", "email": "alice.ochoa@outlook.com", "senha": "123456", "id": "1" }));
+
   try {
-    const raw = localStorage.getItem("usuario");
-    return raw ? JSON.parse(raw) : null;
+    let raw = localStorage.getItem("usuario");
+    raw = raw ? JSON.parse(raw) : null;
+    if (raw !== null) return raw;
+    return users;
   } catch {
     return null;
   }
