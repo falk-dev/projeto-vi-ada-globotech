@@ -1,4 +1,4 @@
-const apiUrl = "https://68cca001716562cf5077f466.mockapi.io/api/tarefass";
+const apiUrl = "https://68cca001716562cf5077f466.mockapi.io/api/tarefas";
 
 document.addEventListener("DOMContentLoaded", function () {
 
