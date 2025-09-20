@@ -4,12 +4,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pythonautas Launchpad — Listas</title>
+  <title>Pythonautas Launchpad</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/lista.css" />
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/lista.css" />
 </head>
 
 <body>
@@ -24,7 +24,7 @@
       </a>
       <nav aria-label="primária">
         <ul class="nav">
-          <li><a href="novo-usuario.html">Minhas Listas</a></li>
+          <li><a href="dashboard.html">Minhas Listas</a></li>
           <li><a href="index.html" aria-current="page">Sair</a></li>
         </ul>
       </nav>
@@ -32,269 +32,99 @@
   </header>
 
   <main id="conteudo" class="card site-main card--list container" aria-label="Lista de tarefas">
-    <!-- Cabeçalho dinâmicas -->
-    <div class="card__content" id="list-header">
+    <!-- Cabeçalho -->
+    <div class="card__content">
       <div class="card__header">
-        <h2 class="card__title" id="list-title">Carregando…</h2>
-        <span class="card__label" id="list-priority" hidden>—</span>
+        <h2 class="card__title">Projeto I - Introdução a Python</h2>
+        <span class="card__label card__label--low">Baixa</span>
       </div>
-      <p class="card__description" id="list-description">—</p>
-      <small class="card__meta" id="list-meta">—</small>
+      <p class="card__description">
+        Pipeline em Python com estruturas condicionais simples e CSV em memória.
+      </p>
+      <small class="card__meta">
+        <strong>5 tarefas</strong> &bull; 2 pendentes &bull; 3 concluídas
+      </small>
     </div>
 
     <div class="card__actions">
-      <a id="add-task-btn" href="nova-tarefa.html" class="card__button">Adicionar tarefa</a>
+      <a href="nova-lista.html" class="card__button">Adicionar tarefa</a>
     </div>
 
-    <!-- Tarefas dinâmicas -->
-    <ul class="card__tasks" id="tasks">
-  
+    <!-- Tarefas -->
+    <ul class="card__tasks">
+      <li class="card__task">
+        <div class="card__task-info">
+          <input type="checkbox" name="task-1" id="task-1" checked>
+          <label for="task-1" class="card__name">Criar repositório</label>
+          <span class="card__deadline">Prazo: 28/08/2025</span>
+          <span class="card__owner">Responsável: Alice</span>
+        </div>
+        <div class="card__task-action">
+          <span class="card__label card__label--high">Alta</span>
+          <img width="30" height="30" src="https://img.icons8.com/windows/100/trash.png" alt="trash" />
+        </div>
+      </li>
+
+      <li class="card__task">
+        <div class="card__task-info">
+          <input type="checkbox" name="task-2" id="task-2">
+          <label for="task-2" class="card__name">Adicionar README</label>
+          <span class="card__deadline">Prazo: 31/08/2025</span>
+          <span class="card__owner">Responsável: Mychelle</span>
+        </div>
+        <div class="card__task-action">
+          <span class="card__label card__label--medium">Média</span>
+          <img width="30" height="30" src="https://img.icons8.com/windows/100/trash.png" alt="trash" />
+        </div>
+      </li>
+
+      <li class="card__task">
+        <div class="card__task-info">
+          <input type="checkbox" name="task-3" id="task-3" checked>
+          <label for="task-3" class="card__name">Adicionar Pastas</label>
+          <span class="card__deadline">Prazo: 28/08/2025</span>
+          <span class="card__owner">Responsável: Will</span>
+        </div>
+        <div class="card__task-action">
+          <span class="card__label card__label--low">Baixa</span>
+          <img width="30" height="30" src="https://img.icons8.com/windows/100/trash.png" alt="trash" />
+        </div>
+      </li>
+
+      <li class="card__task">
+        <div class="card__task-info">
+          <input type="checkbox" name="task-4" id="task-4" checked>
+          <label for="task-4" class="card__name">Criar main.py</label>
+          <span class="card__deadline">Prazo: 02/09/2025</span>
+          <span class="card__owner">Responsável: Isa</span>
+        </div>
+        <div class="card__task-action">
+          <span class="card__label card__label--high">Alta</span>
+          <img width="30" height="30" src="https://img.icons8.com/windows/100/trash.png" alt="trash" />
+        </div>
+      </li>
+
+      <li class="card__task">
+        <div class="card__task-info">
+          <input type="checkbox" name="task-5" id="task-5">
+          <label for="task-5" class="card__name">Tratar arquivo .csv</label>
+          <span class="card__deadline">Prazo: 02/09/2025</span>
+          <span class="card__owner">Responsável: Não definido</span>
+        </div>
+        <div class="card__task-action">
+          <span class="card__label card__label--high">Alta</span>
+          <img width="30" height="30" src="https://img.icons8.com/windows/100/trash.png" alt="trash" />
+        </div>
+      </li>
     </ul>
-
-    <div id="empty-state" class="text-center py-3" hidden>
-      <p class="mb-2">Nenhuma tarefa por aqui ainda.</p>
-      <a class="btn primary" id="add-first-task" href="nova-tarefa.html">Criar primeira tarefa</a>
-    </div>
-    <div id="error-state" class="alert alert-danger mt-3" role="alert" hidden>Falha ao carregar a lista. Tente novamente.</div>
   </main>
 
   <footer class="site" role="contentinfo">
     <div class="container">
-      <p>© 2025 <a href="https://github.com/falk-dev/projeto-v-ada-globotech" target="_blank" rel="noopener">Pythonautas — Academia Globotech</a></p>
+      <p>© 2025 <a href="https://github.com/falk-dev/projeto-v-ada-globotech" target="_blank" rel="noopener">Pythonautas
+          — Academia Globotech</a></p>
     </div>
   </footer>
-
-  <script>
- 
-    const API_BASE = localStorage.getItem('API_BASE') || '/api';
-
-    const params = new URLSearchParams(location.search);
-    const LIST_ID = params.get('id') || '1'; 
-
-    
-    const $ = (sel, ctx = document) => ctx.querySelector(sel);
-    const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
-
-    const formatDate = (iso) => {
-      if (!iso) return 'Sem prazo';
-      const d = new Date(iso);
-      if (Number.isNaN(d.getTime())) return 'Sem prazo';
-      return d.toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
-    };
-
-    const priorityClass = (p) => {
-      switch ((p || '').toLowerCase()) {
-        case 'alta': return 'card__label card__label--high';
-        case 'media':
-        case 'média': return 'card__label card__label--medium';
-        case 'baixa': return 'card__label card__label--low';
-        default: return 'card__label';
-      }
-    };
-
-    function computeStats(tasks = []) {
-      const total = tasks.length;
-      const done = tasks.filter(t => !!t.concluida).length;
-      const pending = total - done;
-      return { total, done, pending };
-    }
-
-
-    function renderHeader(list) {
-      $('#list-title').textContent = list.nome || 'Lista';
-      const prioEl = $('#list-priority');
-      if (list.prioridade) {
-        prioEl.className = priorityClass(list.prioridade);
-        prioEl.textContent = capitalize(list.prioridade);
-        prioEl.hidden = false;
-      } else {
-        prioEl.hidden = true;
-      }
-      $('#list-description').textContent = list.descricao || '—';
-
-      const { total, done, pending } = computeStats(list.tarefas || []);
-      $('#list-meta').innerHTML = `<strong>${total} tarefa${total !== 1 ? 's' : ''}</strong> • ${pending} pendente${pending !== 1 ? 's' : ''} • ${done} concluída${done !== 1 ? 's' : ''}`;
-
-  
-      $('#add-task-btn').href = `nova-tarefa.html?lista=${encodeURIComponent(LIST_ID)}`;
-      $('#add-first-task').href = `nova-tarefa.html?lista=${encodeURIComponent(LIST_ID)}`;
-    }
-
-    function renderTasks(tasks = []) {
-      const ul = $('#tasks');
-      ul.innerHTML = '';
-
-      if (!tasks.length) {
-        $('#empty-state').hidden = false;
-        return;
-      }
-      $('#empty-state').hidden = true;
-
-      const frag = document.createDocumentFragment();
-
-      for (const t of tasks) {
-        const li = document.createElement('li');
-        li.className = 'card__task';
-        li.dataset.id = t.id;
-
-        li.innerHTML = `
-          <div class="card__task-info">
-            <input type="checkbox" id="task-${t.id}" ${t.concluida ? 'checked' : ''} aria-label="Marcar como concluída">
-            <label for="task-${t.id}" class="card__name">${escapeHtml(t.nome)}</label>
-            <span class="card__deadline">Prazo: ${formatDate(t.prazo)}</span>
-            <span class="card__owner">Responsável: ${escapeHtml(t.responsavel || 'Não definido')}</span>
-          </div>
-          <div class="card__task-action">
-            <span class="${priorityClass(t.prioridade)}">${capitalize(t.prioridade || '')}</span>
-            <button class="btn-trash" aria-label="Excluir tarefa" title="Excluir tarefa">
-              <img width="30" height="30" src="https://img.icons8.com/windows/100/trash.png" alt="trash" />
-            </button>
-          </div>
-        `;
-        frag.appendChild(li);
-      }
-      ul.appendChild(frag);
-    }
-
-    function capitalize(s) {
-      if (!s) return '';
-      return String(s).charAt(0).toUpperCase() + String(s).slice(1);
-    }
-
-    function escapeHtml(str) {
-      return String(str || '')
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
-    }
-
-    async function getList(id) {
-      const url = `${API_BASE}/listas/${encodeURIComponent(id)}`;
-      const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return res.json();
-    }
-
-    async function patchTaskDone(taskId, done) {
-      const url = `${API_BASE}/tarefas/${encodeURIComponent(taskId)}`;
-      const res = await fetch(url, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ concluida: !!done })
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return res.json();
-    }
-
-    async function deleteTask(taskId) {
-      const url = `${API_BASE}/tarefas/${encodeURIComponent(taskId)}`;
-      const res = await fetch(url, { method: 'DELETE' });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    }
-
-    function bindEvents() {
-      // Toggle concluída
-      $('#tasks').addEventListener('change', async (e) => {
-        if (e.target.matches('input[type="checkbox"]')) {
-          const li = e.target.closest('.card__task');
-          if (!li) return;
-          const id = li.dataset.id;
-          const checked = e.target.checked;
-          try {
-            await patchTaskDone(id, checked);
-        
-            const name = $('#list-title').textContent; 
-            
-            const current = readCurrentTasksFromDOM();
-            const { total, done, pending } = computeStats(current);
-            $('#list-meta').innerHTML = `<strong>${total} tarefa${total !== 1 ? 's' : ''}</strong> • ${pending} pendente${pending !== 1 ? 's' : ''} • ${done} concluída${done !== 1 ? 's' : ''}`;
-          } catch (err) {
-            e.target.checked = !checked; 
-            toast('Não foi possível atualizar a tarefa.', 'danger');
-          }
-        }
-      });
-
-    
-      $('#tasks').addEventListener('click', async (e) => {
-        const btn = e.target.closest('.btn-trash');
-        if (!btn) return;
-        const li = btn.closest('.card__task');
-        const id = li?.dataset.id;
-        if (!id) return;
-        if (!confirm('Excluir esta tarefa?')) return;
-        try {
-          await deleteTask(id);
-          li.remove();
-          const remaining = $$('#tasks .card__task').length;
-          if (!remaining) $('#empty-state').hidden = false;
-          // Atualiza meta
-          const current = readCurrentTasksFromDOM();
-          const { total, done, pending } = computeStats(current);
-          $('#list-meta').innerHTML = `<strong>${total} tarefa${total !== 1 ? 's' : ''}</strong> • ${pending} pendente${pending !== 1 ? 's' : ''} • ${done} concluída${done !== 1 ? 's' : ''}`;
-        } catch (err) {
-          toast('Falha ao excluir. Tente novamente.', 'danger');
-        }
-      });
-    }
-
-    function readCurrentTasksFromDOM() {
-      
-      return $$('#tasks .card__task').map(li => ({ concluida: li.querySelector('input[type="checkbox"]').checked }));
-    }
-
-
-    function toast(msg, type = 'success') {
-      const el = document.createElement('div');
-      el.className = `alert alert-${type}`;
-      el.style.position = 'fixed';
-      el.style.right = '1rem';
-      el.style.bottom = '1rem';
-      el.style.zIndex = 1000;
-      el.textContent = msg;
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 2500);
-    }
-
-  
-    async function bootstrap() {
-      bindEvents();
-      try {
-        const list = await getList(LIST_ID);
-       
-        renderHeader(list);
-        renderTasks(list.tarefas || []);
-      } catch (err) {
-        console.error(err);
-        $('#error-state').hidden = false;
-      
-        const mock = getMock();
-        renderHeader(mock);
-        renderTasks(mock.tarefas);
-        toast('Exibindo dados mock (API indisponível).', 'warning');
-      }
-    }
-
-    function getMock() {
-      return {
-        id: LIST_ID,
-        nome: 'Projeto I - Introdução a Python',
-        descricao: 'Pipeline em Python com estruturas condicionais simples e CSV em memória.',
-        prioridade: 'baixa',
-        tarefas: [
-          { id: '1', nome: 'Criar repositório', prioridade: 'alta', prazo: '2025-08-28', responsavel: 'Alice', concluida: true },
-          { id: '2', nome: 'Adicionar README', prioridade: 'media', prazo: '2025-08-31', responsavel: 'Mychelle', concluida: false },
-          { id: '3', nome: 'Adicionar Pastas', prioridade: 'baixa', prazo: '2025-08-28', responsavel: 'Will', concluida: true },
-          { id: '4', nome: 'Criar main.py', prioridade: 'alta', prazo: '2025-09-02', responsavel: 'Isa', concluida: true },
-          { id: '5', nome: 'Tratar arquivo .csv', prioridade: 'alta', prazo: '2025-09-02', responsavel: null, concluida: false },
-        ]
-      };
-    }
-
-    bootstrap();
-  </script>
 </body>
 
 </html>

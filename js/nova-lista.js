@@ -16,14 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Coleta os itens da lista (inputs sem ID específico)
     const itemInputs = form.querySelectorAll('input[type="text"]:not(#nomeListaInput)');
     const itens = [];
-    
     itemInputs.forEach(input => {
       const valor = input.value.trim();
       if (valor) {
-        itens.push({
-          texto: valor,
-          concluido: false
-        });
+        itens.push(valor);
       }
     });
 
@@ -33,13 +29,11 @@ document.addEventListener("DOMContentLoaded", function () {
       form.querySelector('#nomeListaInput').focus();
       return;
     }
-
     if (nomeLista.length < 3) {
       alert("O nome da lista deve ter pelo menos 3 caracteres.");
       form.querySelector('#nomeListaInput').focus();
       return;
     }
-
     if (itens.length === 0) {
       alert("Por favor, adicione pelo menos um item à lista.");
       return;
@@ -60,25 +54,50 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(loadingPopup);
 
     try {
+      // Cria a lista sem o array de itens
+      const usuario = localStorage.getItem("usuario");
+      const usuarioId = usuario ? JSON.parse(usuario).id : "1";
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          nome: nomeLista,
-          itens: itens,
+          titulo: nomeLista,
           permitirEdicao: permitirEdicao,
           compartilhar: compartilhar,
           dataCriacao: new Date().toISOString(),
-          usuarioId: 1 // ID fixo do usuário por enquanto
+          usuarioId: String(usuarioId)
         }),
       });
 
       if (!response.ok) throw new Error("Erro ao criar lista");
+      const listaCriada = await response.json();
+
+      // Cria cada tarefa individualmente no endpoint /tarefas
+      for (const texto of itens) {
+        await fetch("https://68cca001716562cf5077f466.mockapi.io/api/tarefas", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            titulo: texto,
+            descricao: "",
+            prioridade: "baixa",
+            concluida: false,
+            listaId: listaCriada.id
+          })
+        });
+      }
 
       alert("Lista criada com sucesso!");
       form.reset();
+
+      // Salva usuário logado no localStorage (exemplo: id fixo)
+      if (!localStorage.getItem("usuario")) {
+        localStorage.setItem("usuario", JSON.stringify({ id: 1, nome: "Usuário Teste" }));
+      }
 
       // Redireciona após pequeno atraso
       setTimeout(() => {
