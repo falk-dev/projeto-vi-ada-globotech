@@ -23,33 +23,58 @@ async function initDashboard() {
 
   grid.innerHTML = `<p style="grid-column:1/-1; text-align:center;">Carregando suas listas...</p>`;
 
-  try {
-    console.log("tonhao");
+  // Mock de listas para fallback
+  const listasMockadas = [
+    {
+      id: "mock1",
+      titulo: "Projeto I - Introdução a Python",
+      descricao: "Pipeline em Python com estruturas condicionais simples e CSV em memória.",
+      priority: "alta"
+    },
+    {
+      id: "mock2",
+      titulo: "Projeto II - Web Scraping",
+      descricao: "Coleta de dados de sites usando BeautifulSoup.",
+      priority: "media"
+    },
+    {
+      id: "mock3",
+      titulo: "Projeto III - API Flask",
+      descricao: "Criação de API RESTful com Flask.",
+      priority: "baixa"
+    }
+  ];
 
-    console.log(user);
-    console.log(user.id);
+  try {
     const lists = await apiGet(`${URLS.lists}?usuarioId=${encodeURIComponent(user.id)}&sortBy=createdAt&order=desc`);
 
-    if (!lists.length) {
-      grid.innerHTML = `
-        <div style="grid-column:1/-1; text-align:center; color:#6B7280;">
-          <p>Nenhuma lista encontrada.</p>
-          <a class="btn primary" href="nova-lista.html">CRIAR LISTA</a>
-        </div>`;
-      return;
-    }
-
-    const cards = await Promise.all(
-      lists.map(async (l) => {
-        const counts = await getCountsForList(l.id);
+    let cards = [];
+    if (lists.length) {
+      cards = await Promise.all(
+        lists.map(async (l) => {
+          const counts = await getCountsForList(l.id);
+          return renderListCard(l, counts);
+        })
+      );
+    } else {
+      // Fallback: renderiza listas mockadas
+      cards = listasMockadas.map((l) => {
+        // Mocka contadores
+        const counts = { total: 5, pendentes: 2, concluidas: 3 };
         return renderListCard(l, counts);
-      })
-    );
+      });
+    }
 
     grid.innerHTML = "";
     cards.forEach((c) => grid.appendChild(c));
   } catch (err) {
+    // Fallback: renderiza listas mockadas em caso de erro
+    const cards = listasMockadas.map((l) => {
+      const counts = { total: 5, pendentes: 2, concluidas: 3 };
+      return renderListCard(l, counts);
+    });
     grid.innerHTML = `<p style="grid-column:1/-1; color:#b00020; text-align:center;">Erro ao carregar: ${err.message}</p>`;
+    cards.forEach((c) => grid.appendChild(c));
   }
 }
 
@@ -94,7 +119,7 @@ function renderListCard(list, counts) {
     <span class="badge badge--prio ${prioClass(prio)}">${prioLabel(prio)}</span>
 
     <h2 class="dashboard-list-card__title">
-      <a href="lista.html?id=${list.id}">${esc(list.title || "Lista sem título")}</a>
+      <a href="lista.html?id=${list.id}">${esc(list.titulo || "Lista sem título")}</a>
     </h2>
 
     <div class="badges-inline">
@@ -105,7 +130,7 @@ function renderListCard(list, counts) {
       <a class="meta-link" href="lista.html?id=${list.id}#concluidas"><strong>${counts.concluidas}</strong> concluídas</a>
     </div>
 
-    <p class="dashboard-list-card__desc">${esc(list.description || "")}</p>
+    <p class="dashboard-list-card__desc">${esc(list.descricao || "")}</p>
 
     <a class="btn secondary" href="lista.html?id=${list.id}">VER LISTA</a>
   `;

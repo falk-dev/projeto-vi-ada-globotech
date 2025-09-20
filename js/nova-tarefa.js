@@ -3,13 +3,20 @@ const apiUrl = "https://68cca001716562cf5077f466.mockapi.io/api/tarefas";
 document.addEventListener("DOMContentLoaded", function () {
 
   const form = document.querySelector('form');
-
   if (!form) return;
+
+  // Pega o id da lista da URL
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    const regex = new RegExp("[\?&]" + name + "=([^&#]*)");
+    const results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  const listaId = getUrlParameter('id');
 
   form.addEventListener("submit", async function criarTarefa(e) {
     e.preventDefault();
 
-    // Coleta valores
     const titulo = form.querySelector('input[name="titulo"]').value.trim();
     const prioridade = form.querySelector('select[name="prioridade"]').value.trim();
     const descricao = form.querySelector('textarea[name="descricao"]').value.trim();
@@ -28,12 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(loadingPopup);
 
     try {
-      const response = await fetch(apiUrl, {
+      if (!listaId) throw new Error("Lista não encontrada");
+      const endpoint = `https://68cca001716562cf5077f466.mockapi.io/api/listas/${listaId}/tarefas`;
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ titulo, prioridade, descricao, concluida: false, listaId: 1 }),
+        body: JSON.stringify({ titulo, prioridade, descricao, concluida: false }),
       });
 
       if (!response.ok) throw new Error("Erro ao cadastrar tarefa");
@@ -41,14 +50,13 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Tarefa cadastrada com sucesso!");
       form.reset();
 
-      // Redireciona após pequeno atraso
       setTimeout(() => {
-        window.location.href = "dashboard.html";
+        window.location.href = `lista.html?id=${listaId}`;
       }, 500);
     } catch (err) {
-      alert("Falha ao cadastrar tarefa");
+      alert("Falha ao cadastrar tarefa: " + err.message);
     } finally {
       document.body.removeChild(loadingPopup);
     }
-  })
+  });
 });
